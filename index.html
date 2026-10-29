@@ -1,1150 +1,1569 @@
-﻿
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdul Hadi | Computer Science & Engineering Graduate</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Abdul Hadi | Computer Science & Engineering Graduate • Data Analyst & IT Support</title>
+    <meta name="description" content="Official Executive Portfolio of Abdul Hadi — Computer Science & Engineering Graduate (CGPA: 3.44/4.00), Data Analyst & IT Support Specialist.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            900: '#0F172A',
+                            800: '#1E293B',
+                            700: '#334155',
+                        },
+                        royal: {
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                            700: '#1D4ED8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #ec4899;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --bg: #ffffff;
-            --card-bg: #f1f5f9;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --gradient: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
-        }
-
-        html { scroll-behavior: smooth; }
-
+        /* ==========================================
+           PURE WHITE ULTRA-PROFESSIONAL ANIMATIONS
+        =========================================== */
         body {
-            background: var(--bg);
-            color: var(--dark);
+            background-color: #FFFFFF;
+            color: #334155;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        .navbar {
+        /* Interactive Background Canvas */
+        #particleCanvas {
             position: fixed;
             top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.65;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Custom Smooth Magnetic Cursor (Desktop) */
+        @media (pointer: fine) {
+            .cursor-dot {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 8px;
+                height: 8px;
+                background-color: #2563EB;
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                transform: translate(-50%, -50%);
+                transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+            }
+            .cursor-ring {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 36px;
+                height: 36px;
+                border: 1.5px solid rgba(37, 99, 235, 0.45);
+                background-color: rgba(37, 99, 235, 0.03);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9998;
+                transform: translate(-50%, -50%);
+                transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                            height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                            border-color 0.25s ease,
+                            background-color 0.25s ease;
+            }
+            .cursor-ring.cursor-hover {
+                width: 56px;
+                height: 56px;
+                border-color: rgba(79, 70, 229, 0.7);
+                background-color: rgba(37, 99, 235, 0.08);
+            }
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--dark);
-            text-decoration: none;
-        }
-
-        .logo span { color: var(--primary); }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-link {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
+        /* 3D Tilt & Spotlight Executive White Card */
+        .tilt-card {
             position: relative;
-            transition: color 0.3s;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+            transform-style: preserve-3d;
+            will-change: transform;
+            transition: transform 0.25s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+                        box-shadow 0.35s ease,
+                        border-color 0.35s ease;
+            overflow: hidden;
         }
 
-        .nav-link::after {
+        .tilt-card:hover {
+            border-color: #93C5FD;
+            box-shadow: 0 22px 45px -12px rgba(37, 99, 235, 0.16);
+        }
+
+        /* Radial Spotlight Glare Inside Cards */
+        .tilt-card::before {
             content: '';
             position: absolute;
-            bottom: -5px;
+            top: var(--mouse-y, -200px);
+            left: var(--mouse-x, -200px);
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.11) 0%, rgba(79, 70, 229, 0.04) 40%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .tilt-card:hover::before {
+            opacity: 1;
+        }
+
+        .tilt-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Portrait Continuous Floating Levitation & Rotating Aura */
+        @keyframes floatPortrait {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes spinSlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .portrait-levitate {
+            animation: floatPortrait 5s ease-in-out infinite;
+        }
+
+        .portrait-aura-ring {
+            position: relative;
+            padding: 5px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, #2563EB, #60A5FA, #4F46E5, #DBEAFE);
+            background-size: 250% 250%;
+            animation: gradientShift 6s ease infinite;
+            box-shadow: 0 25px 55px -12px rgba(37, 99, 235, 0.22);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation Link Hover Underline */
+        .nav-item {
+            position: relative;
+            color: #334155;
+            transition: color 0.25s ease;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: #2563EB;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s;
+            bottom: -5px;
+            width: 0%;
+            height: 2.5px;
+            background: linear-gradient(90deg, #2563EB, #4F46E5);
+            border-radius: 2px;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .nav-link:hover, .nav-link.active { color: var(--primary); }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
+        .nav-item:hover::after,
+        .nav-item.active::after {
+            width: 100%;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--dark);
-            border-radius: 3px;
-            transition: 0.3s;
+        /* Infinite Smooth Marquee Ticker */
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
+        .marquee-track {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 20px 50px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            width: max-content;
+            animation: marqueeScroll 32s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Staggered 3D Scroll Reveal Animation */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(32px) scale(0.98);
+            filter: blur(4px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-up.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
+        }
+
+        /* Animated Skill Progress Bar Shimmer */
+        .skill-bar-fill {
+            width: 0%;
+            transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
+        .skill-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: barShimmer 2.4s infinite;
+        }
+
+        @keyframes barShimmer {
+            100% { left: 160%; }
+        }
+
+        /* Typewriter Cursor Blink */
+        .type-cursor {
+            display: inline-block;
+            width: 2.5px;
+            height: 1.15em;
+            background-color: #2563EB;
+            margin-left: 4px;
+            vertical-align: middle;
+            animation: blinkCaret 0.8s step-end infinite;
+        }
+
+        @keyframes blinkCaret {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Button Shine Sweep Effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
             content: '';
             position: absolute;
             top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: var(--gradient);
-            border-radius: 50%;
-            opacity: 0.1;
-            filter: blur(80px);
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .hero-greeting {
-            color: var(--primary);
-            font-weight: 500;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .hero-name {
-            font-size: 64px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 15px;
-        }
-
-        .hero-name span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-title {
-            font-size: 24px;
-            color: var(--gray);
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-
-        .hero-description {
-            color: var(--gray);
-            margin-bottom: 30px;
-            font-size: 16px;
-            max-width: 500px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: white;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: var(--gradient);
-            color: white;
-            transform: translateY(-5px);
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .image-wrapper {
-            position: relative;
-            width: 400px;
-            height: 400px;
-        }
-
-        .image-circle {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 150px;
-            color: white;
-            box-shadow: 0 30px 60px rgba(99, 102, 241, 0.3);
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .floating-icon {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--primary);
-            box-shadow: var(--shadow);
-            animation: floatIcon 3s ease-in-out infinite;
-        }
-
-        .icon-1 { top: 10%; left: -10%; animation-delay: 0s; }
-        .icon-2 { top: 20%; right: -10%; animation-delay: 0.5s; }
-        .icon-3 { bottom: 20%; left: -10%; animation-delay: 1s; }
-        .icon-4 { bottom: 10%; right: -10%; animation-delay: 1.5s; }
-
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            50% { transform: translateY(-15px) rotate(5deg); }
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-down a {
-            color: var(--primary);
-            font-size: 24px;
-            text-decoration: none;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-15px); }
-            60% { transform: translateX(-50%) translateY(-7px); }
-        }
-
-        /* Section Headers */
-        section { padding: 100px 0; }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-subtitle {
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 14px;
-        }
-
-        .section-title {
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .section-title span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* About Section */
-        .about { background: var(--bg); }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            color: var(--gray);
-            margin-bottom: 30px;
-            font-size: 16px;
-        }
-
-        .about-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .info-item i {
-            width: 50px;
-            height: 50px;
-            background: var(--card-bg);
-            color: var(--primary);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .info-item h4 { font-size: 14px; color: var(--gray); margin-bottom: 3px; }
-        .info-item p { font-weight: 600; color: var(--dark); }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 30px 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
-            border-top: 4px solid var(--primary);
-        }
-
-        .stat-card:hover { transform: translateY(-10px); }
-
-        .stat-card h3 {
-            font-size: 36px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 5px;
-        }
-
-        .stat-card p { color: var(--gray); font-size: 14px; }
-
-        /* Education Timeline */
-        .education { background: var(--card-bg); }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--gradient);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 80px;
-            margin-bottom: 40px;
-        }
-
-        .timeline-icon {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 60px;
-            height: 60px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
-        }
-
-        .timeline-content:hover { transform: translateX(10px); }
-
-        .timeline-date {
-            display: inline-block;
-            background: var(--gradient);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            margin-bottom: 10px;
-        }
-
-        .timeline-content h3 { font-size: 22px; margin-bottom: 5px; }
-        .timeline-content h4 { color: var(--primary); margin-bottom: 10px; font-weight: 500; }
-        .timeline-content p { color: var(--gray); margin-bottom: 10px; }
-
-        .timeline-result {
-            display: inline-block;
-            background: var(--card-bg);
-            color: var(--primary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        /* Skills */
-        .skills { background: var(--bg); }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .skill-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--gradient);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 32px;
-            margin: 0 auto 20px;
-        }
-
-        .skill-card h3 { font-size: 20px; margin-bottom: 10px; }
-        .skill-card p { color: var(--gray); margin-bottom: 20px; font-size: 14px; }
-
-        .skill-bar {
-            height: 8px;
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: var(--gradient);
-            border-radius: 10px;
-            transition: width 1s ease-in-out;
-        }
-
-        /* Training */
-        .training { background: var(--card-bg); }
-
-        .training-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .training-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            border-left: 4px solid var(--primary);
-        }
-
-        .training-card:hover {
-            transform: translateY(-10px);
-            border-left-color: var(--secondary);
-        }
-
-        .training-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .training-header i {
-            font-size: 40px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .training-duration {
-            background: var(--gradient);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .training-card h3 { font-size: 20px; margin-bottom: 10px; }
-        .training-topic {
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--card-bg);
-        }
-
-        .training-footer p {
-            color: var(--gray);
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .training-footer i { color: var(--primary); margin-right: 8px; }
-
-        /* Contact */
-        .contact { background: var(--bg); }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .contact-info h3 { font-size: 28px; margin-bottom: 15px; }
-        .contact-info > p { color: var(--gray); margin-bottom: 30px; }
-
-        .contact-items { display: flex; flex-direction: column; gap: 25px; }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .contact-item i {
-            width: 55px;
-            height: 55px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-        }
-
-        .contact-item h4 { font-size: 14px; color: var(--gray); margin-bottom: 3px; }
-        .contact-item a, .contact-item p {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .contact-item a:hover { color: var(--primary); }
-
-        .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .form-group { margin-bottom: 20px; }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid var(--card-bg);
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 15px;
-            transition: border 0.3s;
-            resize: vertical;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-        }
-
-        .footer p { margin-bottom: 5px; opacity: 0.8; }
-        .footer i { color: var(--secondary); }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .hero-container,
-            .about-content,
-            .contact-content { grid-template-columns: 1fr; text-align: center; }
-            
-            .hero-name { font-size: 48px; }
-            .hero-buttons, .social-links, .about-info { justify-content: center; }
-            .about-info { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-            .image-wrapper { width: 300px; height: 300px; }
-            .image-circle { font-size: 100px; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                flex-direction: column;
-                width: 100%;
-                background: white;
-                padding: 30px;
-                gap: 20px;
-                transition: 0.3s;
-                box-shadow: var(--shadow);
-            }
-            
-            .nav-menu.active { left: 0; }
-            .hamburger { display: flex; }
-            
-            .hero-name { font-size: 38px; }
-            .hero-title { font-size: 18px; }
-            .section-title { font-size: 32px; }
-            section { padding: 60px 0; }
-            
-            .timeline::before { left: 20px; }
-            .timeline-item { padding-left: 60px; }
-            .timeline-icon { width: 45px; height: 45px; font-size: 18px; }
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+            transform: rotate(25deg);
+            transition: left 0.6s ease;
+        }
+        .btn-shine:hover::after {
+            left: 130%;
         }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">A<span>H</span></a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#training" class="nav-link">Training</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+<body class="font-sans antialiased selection:bg-royal-600 selection:text-white">
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <p class="hero-greeting">Hello, I'm</p>
-                <h1 class="hero-name">Abdul <span>Hadi</span></h1>
-                <h2 class="hero-title">Computer Science & Engineering Graduate</h2>
-                <p class="hero-description">
-                    A motivated and dedicated CSE graduate passionate about technology, 
-                    seeking opportunities to apply technical knowledge and grow professionally.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Hire Me</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
-                </div>
-                <div class="social-links">
-                    <a href="#contact"><i class="fas fa-envelope"></i></a>
-                    <a href="#contact"><i class="fas fa-phone"></i></a>
-                    <a href="#contact"><i class="fab fa-linkedin"></i></a>
-                    <a href="#contact"><i class="fab fa-github"></i></a>
-                    <a href="#contact"><i class="fab fa-facebook"></i></a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="image-wrapper">
-                    <div class="image-circle">
-                        <img src="Images/profile.jpg.jpeg" alt="Profile Image" style="width:100%; height:100%; object-fit: cover; border-radius: 50%;">
-                    </div>
-                    <div class="floating-icon icon-1"><i class="fab fa-java"></i></div>
-                    <div class="floating-icon icon-2"><i class="fas fa-code"></i></div>
-                    <div class="floating-icon icon-3"><i class="fas fa-laptop-code"></i></div>
-                    <div class="floating-icon icon-4"><i class="fas fa-microchip"></i></div>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-down">
-            <a href="#about"><i class="fas fa-chevron-down"></i></a>
-        </div>
-    </section>
+    <!-- Custom Magnetic Cursor (Desktop Only) -->
+    <div id="cursorDot" class="cursor-dot hidden lg:block"></div>
+    <div id="cursorRing" class="cursor-ring hidden lg:block"></div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-subtitle">Get to know me</p>
-                <h2 class="section-title">About <span>Me</span></h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Career Objective</h3>
-                    <p>
-                        A motivated and dedicated <strong>Computer Science & Engineering graduate</strong> 
-                        seeking an entry-level position where I can apply my technical knowledge and 
-                        practical skills to contribute effectively to a progressive organization while 
-                        continuing to grow professionally.
-                    </p>
-                    <div class="about-info">
-                        <div class="info-item">
-                            <i class="fas fa-user"></i>
-                            <div>
-                                <h4>Name</h4>
-                                <p>Abdul Hadi</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
-                                <h4>Degree</h4>
-                                <p>BSc in CSE</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p>hadimdabdul2@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Location</h4>
-                                <p>Barishal, Bangladesh</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-stats">
-                    <div class="stat-card">
-                        <h3>3.50</h3>
-                        <p>CGPA</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>3+</h3>
-                        <p>Certifications</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>3</h3>
-                        <p>Programming Languages</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>2</h3>
-                        <p>Languages Spoken</p>
-                    </div>
-                </div>
+    <!-- Interactive Constellation Particle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Top Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 right-0 h-[3px] bg-slate-100 z-[60]">
+        <div id="scrollProgress" class="h-full w-0 bg-gradient-to-r from-royal-600 via-indigo-600 to-sky-500 transition-all duration-100"></div>
+    </div>
+
+    <!-- ==========================================
+         ULTRA-CLEAN MINIMALIST TOP NAVIGATION BAR
+    =========================================== -->
+    <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 h-[74px] bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+            
+            <!-- Left: Clean Typographic Logo -->
+            <a href="#home" class="font-display font-extrabold text-xl tracking-tight text-navy-900 flex items-center gap-1.5 group">
+                <span>ABDUL HADI</span>
+                <span class="w-2 h-2 rounded-full bg-royal-600 group-hover:scale-125 transition-transform"></span>
+            </a>
+
+            <!-- Center: Clean Desktop Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold">
+                <a href="#about" class="nav-item active">About</a>
+                <a href="#skills" class="nav-item">Skills</a>
+                <a href="#experience" class="nav-item">Experience</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#education" class="nav-item">Education</a>
+            </nav>
+
+            <!-- Right: Single Sleek CTA Button + Mobile Hamburger -->
+            <div class="flex items-center gap-3">
+                <a href="#contact" class="btn-shine hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-royal-600 to-indigo-600 hover:from-royal-700 hover:to-indigo-700 shadow-md shadow-royal-600/20 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-regular fa-paper-plane text-xs"></i>
+                    <span>Contact Me</span>
+                </a>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" aria-label="Toggle Menu" class="md:hidden w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-navy-900 hover:bg-slate-50 transition">
+                    <i id="mobileMenuIcon" class="fa-solid fa-bars text-base"></i>
+                </button>
             </div>
         </div>
-    </section>
 
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-subtitle">My academic journey</p>
-                <h2 class="section-title">Education<span>.</span></h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-university"></i></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2022 - 2025</span>
-                        <h3>BSc (Engineering)</h3>
-                        <h4>Computer Science & Engineering</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> University of Global Village</p>
-                        <span class="timeline-result">CGPA: 3.50 (Approx.)</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-school"></i></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2020</span>
-                        <h3>HSC</h3>
-                        <h4>Science</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> Govt. BM College, Barishal</p>
-                        <span class="timeline-result">GPA: 4.50</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-book"></i></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2018</span>
-                        <h3>SSC</h3>
-                        <h4>Science</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> Lechushah Unpaid Alia Madrasah, Barishal</p>
-                        <span class="timeline-result">GPA: 4.39</span>
-                    </div>
-                </div>
-            </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 pt-3 pb-5 space-y-2 shadow-xl">
+            <a href="#about" class="mobile-link block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-royal-50 hover:text-royal-600">About</a>
+            <a href="#skills" class="mobile-link block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-royal-50 hover:text-royal-600">Skills</a>
+            <a href="#experience" class="mobile-link block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-royal-50 hover:text-royal-600">Experience</a>
+            <a href="#projects" class="mobile-link block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-royal-50 hover:text-royal-600">Projects</a>
+            <a href="#education" class="mobile-link block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-royal-50 hover:text-royal-600">Education</a>
+            <a href="#contact" class="mobile-link block w-full text-center mt-2 px-4 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-royal-600 to-indigo-600">Contact Me</a>
         </div>
-    </section>
+    </header>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-subtitle">What I'm good at</p>
-                <h2 class="section-title">My <span>Skills</span></h2>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-file-word"></i></div>
-                    <h3>MS Office</h3>
-                    <p>Word, Excel, PowerPoint</p>
-                    <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-tools"></i></div>
-                    <h3>IT Support</h3>
-                    <p>Hardware Maintenance</p>
-                    <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-code"></i></div>
-                    <h3>C / C++</h3>
-                    <p>Programming Fundamentals</p>
-                    <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fab fa-java"></i></div>
-                    <h3>Java</h3>
-                    <p>Object-Oriented Programming</p>
-                    <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-language"></i></div>
-                    <h3>English</h3>
-                    <p>Reading, Writing, Speaking</p>
-                    <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-users"></i></div>
-                    <h3>Teamwork</h3>
-                    <p>Communication & Collaboration</p>
-                    <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main class="relative z-10 pt-[74px]">
 
-    <!-- Training Section -->
-    <section id="training" class="training">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-subtitle">Professional development</p>
-                <h2 class="section-title">Training & <span>Certifications</span></h2>
-            </div>
-            <div class="training-grid">
-                <div class="training-card">
-                    <div class="training-header">
-                        <i class="fas fa-laptop"></i>
-                        <span class="training-duration">6 Months</span>
-                    </div>
-                    <h3>IT Support</h3>
-                    <p class="training-topic">Computer Peripherals & Hardware</p>
-                    <div class="training-footer">
-                        <p><i class="fas fa-building"></i> University of Global Village (IQAC)</p>
-                        <p><i class="far fa-calendar"></i> 2023</p>
-                    </div>
-                </div>
-                <div class="training-card">
-                    <div class="training-header">
-                        <i class="fas fa-language"></i>
-                        <span class="training-duration">6 Months</span>
-                    </div>
-                    <h3>Intensive English Language Course-I</h3>
-                    <p class="training-topic">Listening, Speaking, Writing</p>
-                    <div class="training-footer">
-                        <p><i class="fas fa-building"></i> University of Global Village (IQAC)</p>
-                        <p><i class="far fa-calendar"></i> 2022</p>
-                    </div>
-                </div>
-                <div class="training-card">
-                    <div class="training-header">
-                        <i class="fas fa-desktop"></i>
-                        <span class="training-duration">6 Months</span>
-                    </div>
-                    <h3>Computer Operation</h3>
-                    <p class="training-topic">MS Office, Excel, PowerPoint</p>
-                    <div class="training-footer">
-                        <p><i class="fas fa-building"></i> University of Global Village (IQAC)</p>
-                        <p><i class="far fa-calendar"></i> 2022</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- ==========================================
+             1. EXECUTIVE HERO SECTION (PURE WHITE + ANIMATED)
+        =========================================== -->
+        <section id="home" class="relative py-16 sm:py-20 lg:py-24 overflow-hidden">
+            <!-- Soft Ambient White-Blue Glow Orbs -->
+            <div class="pointer-events-none absolute -top-24 -left-24 w-96 h-96 rounded-full bg-blue-100/60 blur-3xl"></div>
+            <div class="pointer-events-none absolute top-1/3 -right-24 w-96 h-96 rounded-full bg-indigo-100/50 blur-3xl"></div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-subtitle">Get in touch</p>
-                <h2 class="section-title">Contact <span>Me</span></h2>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's talk about your project</h3>
-                    <p>Feel free to reach out for collaborations, opportunities, or just a friendly chat.</p>
-                    <div class="contact-items">
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Phone</h4>
-                                <a href="tel:01722740604">01722740604</a>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+                    
+                    <!-- Left Column (7 Cols on Desktop) -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-1 reveal-up visible">
+                        
+                        <!-- Animated Status Pill -->
+                        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-royal-50 border border-royal-200 text-royal-700 text-xs font-bold tracking-wide shadow-sm">
+                            <span class="relative flex h-2.5 w-2.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-royal-500 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-royal-600"></span>
+                            </span>
+                            <span>AVAILABLE FOR FULL-TIME & ANALYTICAL ROLES</span>
+                        </div>
+
+                        <!-- Main Name & Live Animated Typewriter Subtitle -->
+                        <div class="space-y-3">
+                            <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-[56px] text-navy-900 tracking-tight leading-[1.1]">
+                                Abdul Hadi
+                            </h1>
+                            <p class="font-display font-bold text-base sm:text-lg text-slate-700">
+                                Computer Science & Engineering Graduate | Data Analyst & IT Support
+                            </p>
+                            <div class="h-8 flex items-center justify-center lg:justify-start">
+                                <span class="text-sm sm:text-base font-semibold text-royal-600 bg-royal-50/90 border border-royal-100 px-3.5 py-1 rounded-lg">
+                                    <i class="fa-solid fa-bolt text-xs mr-1.5"></i>
+                                    <span id="typewriterText">Computer Science & Engineering Graduate</span><span class="type-cursor"></span>
+                                </span>
                             </div>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <a href="mailto:hadimdabdul2@gmail.com">hadimdabdul2@gmail.com</a>
-                            </div>
+
+                        <!-- Summary Paragraph -->
+                        <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            Computer Science & Engineering (CSE) graduate (<strong class="text-navy-900 font-semibold">CGPA: 3.44/4.00</strong>) with practical experience in retail field auditing at <strong class="text-navy-900 font-semibold">PRAN-RFL Group</strong>, data analysis, machine learning research, web application development, and IT support. Proficient in leveraging advanced AI tools (<strong class="text-royal-600 font-semibold">ChatGPT, Claude, Gemini</strong>) for workflow optimization.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#contact" class="btn-shine inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm sm:text-base text-white bg-gradient-to-r from-royal-600 to-indigo-600 hover:from-royal-700 hover:to-indigo-700 shadow-lg shadow-royal-600/20 transition transform hover:-translate-y-1">
+                                <i class="fa-regular fa-paper-plane"></i>
+                                <span>Send Direct Message</span>
+                            </a>
+                            <a href="#projects" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm sm:text-base text-navy-900 bg-white border border-slate-300 hover:border-royal-600 hover:text-royal-600 shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
+                                <span>Explore Research & Projects</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Location</h4>
-                                <p>Dokkhin Korapur, Barishal</p>
-                            </div>
+
+                        <!-- Clean Social & Contact Links Row -->
+                        <div class="pt-5 border-t border-slate-200/80 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3 text-xs sm:text-sm text-slate-600">
+                            <a href="tel:+8801722740604" class="inline-flex items-center gap-2 hover:text-royal-600 transition font-medium">
+                                <span class="w-7 h-7 rounded-lg bg-royal-50 text-royal-600 flex items-center justify-center"><i class="fa-solid fa-phone text-xs"></i></span>
+                                <span>+8801722740604</span>
+                            </a>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hadimdabdul2@gmail.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-royal-600 transition font-medium">
+                                <span class="w-7 h-7 rounded-lg bg-royal-50 text-royal-600 flex items-center justify-center"><i class="fa-regular fa-envelope text-xs"></i></span>
+                                <span>hadimdabdul2@gmail.com</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/abdul-hadi-70a6603a5" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-royal-600 transition font-medium">
+                                <span class="w-7 h-7 rounded-lg bg-royal-50 text-royal-600 flex items-center justify-center"><i class="fa-brands fa-linkedin-in text-xs"></i></span>
+                                <span>LinkedIn Profile</span>
+                            </a>
+                            <span class="inline-flex items-center gap-2 text-slate-500 font-medium">
+                                <span class="w-7 h-7 rounded-lg bg-royal-50 text-royal-600 flex items-center justify-center"><i class="fa-solid fa-location-dot text-xs"></i></span>
+                                <span>Dokkhin Korapur, Barishal</span>
+                            </span>
                         </div>
-                        <div class="contact-item">
-                            <i class="fab fa-facebook"></i>
-                            <div>
-                                <h4>Facebook</h4>
-                                <a href="https://www.facebook.com/share/1CBRpLpx3A/" target="_blank">Follow on Facebook</a>
+
+                    </div>
+
+                    <!-- Right Column (5 Cols on Desktop): Clean Uncluttered Portrait Frame with Levitation + 3D Tilt -->
+                    <div class="lg:col-span-5 flex justify-center order-1 lg:order-2 reveal-up visible">
+                        <div class="portrait-levitate">
+                            <div data-tilt class="portrait-aura-ring w-64 sm:w-72 lg:w-80 transition-transform duration-300">
+                                <div class="bg-white p-2.5 rounded-[22px]">
+                                    <div class="aspect-[3/4] w-full rounded-[16px] overflow-hidden bg-slate-50">
+                                        <img 
+                                            src="profile.jpg" 
+                                            onerror="this.onerror=null;this.src='data:image/webp;base64,UklGRjILAABXRUJQVlA4ICYLAADwOgCdASq0APAAPrFQok2nJCMjJ1H6AOAWCWVu3V9zwOqw7mcOCHZh9Qe3y53d9C8T/lN+e8PbKRzhGwwCHz5hOmSyIejro20l7GweVqQ7KiBR7/sWwXIJdX6VBW4pHmZHDwa5vB9hpuPk0xEO2e+DVP/DHGCjsMn7t1UuvFccER838wjkg2+aLB54OYEZrx1O3yhpQKTpBmmgE62qG0lI5Q8VH+7mMXnk1mBq0mM7sgblPksuIEhkmVg5jNJXNdWI1VgnrXUBVNy6KCZ5euT5PnxuliDUD+ymBLdnaSk9V10w0w5jfBWzmADmW6mp1Kv0x15RhPPnYc8eztJUp8wiFq2D4aAk2f9ehbHnDzQ+xR4duOZQCsXMG6I+VvcSqWvKKBKLlkUy8qTwDVeEJGA+dDUsMTUSocm038/0HsM/TaN/+XYOUXF95jtDfjSZGgaUcpTrlIh8KyxaJ/kx4I4gBtPL4gULRE6cOEDOMijNhgFZPDyWX/TBTVuOFoFoZQujT9SXldqcXa7TSFIE2YuIV3DC3kZ62yi9IKPUbHWuWaZkmsGJDfBK8IiAuw9leITnDgl4twirwNlFn2LBICIAQBmaejVKC234VJ8H3OH+8jeRu3WwYPvwIhXrXIhSMaAA/vjaAFGpXNCqT5HA/Qo1PaWlbN2xVFVawj9n41n/NTCo5jZwQXMU3oJ9dJBpkvGHd72TQza0hTD8/9834vhJhB2y9UaJmB7ARPaQRK7pJdId2L2gEoAnz1JTS5bUdLbEq9IBt+tzskDJXwBS/Ta2jZw5MDagZ7x6G0L6nZUlm85BDRLO33qD7jKoCxgCPueYq04Kku4vIgdS+snkl+huC7R5FAFC38OY/Smbf5XwmlrKjOOsB5T4oxka2y7m00xOJRiOD46lC9zl3FRUrBVH+eciU9Iz9RPNhDn1/8gCVOUNAmj8L/FSsSOrATDZzL4iLR6L4OvaTkCNkuQ1MavQ2MD9YQc76M5If2Xd0cMmGFyT0o4qI8DrdQHO6aJkEogr0iakOeZBtuPTdauNn9Wa5idHyadCBdHuudNvUt30tV9f4BHE9Aw+NV9qVXL9HcR+dN+yo5SEASkE+vI1VTvtNPlDfzWq7/jz5F0C4k9boQXf0Vvh5LuVsM1kpp+LV4nzc7Z/292eDxiwThxDcaOMipcf2gKLV3dZx3X2T+7azNj54HFZT2O8x15inlM1CTVYOKXX1zo4vw7WJimAHz/iTaqZhX097kBWUJPqbFiTG5P2O11RCpkd6eHF20z8OcH907S18OfMSLhvlre/Y+dPKMvGnEkrAwxgG2x8WJKKT4+bW/AEMa5Sj8Pr/W74d5J2B3gjlf5BeP3wgHWeeq+GwLt98U6h/TRZ0DHT462RTNq653zIqWvICaGoUGtB1CkUOobskucw/A5CJQssJU8qUaGmrJjmx/paqKJBeR4z1IOhq2eWeRJWuep/EXQY96sDhDGklgpuOCyzg2UfhpPxRwVNAtIL+2SoNSWR0e3cbjreLf2bEADDeX/yjXzq+jhhkZlqNNU2W9fJqWCrvx3Kp7KGiHOR3fDarefiy5dRE9TW+EmDeurgQLQ3XyjE3PyyI9tvSdxozeFJG7VyCLXcOH97kLccEwql1nal/hpBy2Ls9GxtWo4/KfDi36qogeYrWHme3gemeQgrWTRkIzQ6JfQLEtQiKyRiha+jGiYR+e0pjmd3UA7RG15pTestejnfM/NVMEQGdZwslZXLuWWQkPR1ggX1x1SNeTV8jfFnfdNSr47J6A2Nxj/k1pp7cVrHk9Hgvrzh6m1lLgflN0HBTZNVXbu2wuqRUGH5i5y1glN5Pc3mrTd8X/RQsMSUTwTKMWDi6KGGUZd0qW97jLyCNQNt71lTRouhiw9FPx8pEjVsNfqdJHCBKuXOQm1//DrlvDwxckszg8JvlXXixXAiZijZNrh27o6ZZ8kFf4aViIb1qZWNAhlZDiHQ5hbJGp85MmgpmrALIYtuE+JACR8Aa4g3MHolDXEEm7R7yflp0LbNHrgDGpUOUoRF2YhU/sq3yRVUUvtsUSNYBEBS9bBay2YXL6TpAnFqS0SUDgwLKj0ARNSHuysERTU284MrNoFeLuSVCu4WkO2BnrFKeAX4XQSyxHfSpdzSVpCUJPTB8VwgDKmjkHcz5zU8yuvRG9hrz/PFNXZiP+nar7iP2UxXS5x5MKpmp2o3V4oZPIne/D+z2mHG+m9LNSzeTJU1T5fMcH2Qab94j3kfmJkFGAJSX2/Vr67OHE7sGmNcI6WhV2KeW1IxW8YyEFgRI5o2Qj/HQZGyVh3XK1hgwZzKjGzrsY6HjCZb4UrTciseuP8tByjSvUGq9W7DZ7zj2+fBMCl/6y/f5nFv523axeh3djlYvhKA1nA3VcOXWvLtcN0RUitgaPn0XHea22SSvHHBsWFLXvo6odtmhKGy5VdeoUdO4m/ql22fAVeGFm6IHulQjJdTJul4eY6nH46oJW/a8h/El7/4R+Q58sGAVR/mwu+xBTrZxL2qYE9ZO5l0R6UBjYABgaXBYUHrrg3WtbzpSEH5T1CqvzUD+M/am86B2a4cLZDBLJqr34Q4+j0Qh2FuerMVVv68Mq4bc2oEO836caKAU6JoiHZN+kzsVxPuitqUp4Sf4/MkCy0+ShQhuEzxg3N91AtkkggE83C2/miN203hftnY3ZdrdPQAXmcBwSKzh317jrSlKqW6GrYR6EtCQMWbrRX2scEkrMY+pp9NlI1fZVz5Q4AyZrhZ0UCCIrNBArw9SPD9iJkC6EvPqqBSNwPT5h8LFI6u+I9iv8RtilG0ByF9GhdcXFt8rFXJSOUtMiyUWjKsoUuq/hUutjkntRw7LqEH2gtXuRaej06rijJ22PBJy53PaxKMTLC3G6n9bEn4FmOv9eUGEYI288L4xqiXI+u3IqMBqs1GcT/LCdKGfWSPbyMZjF8E0Hcz8yhl0VAma1B/eucP6pdHxie52X3CvulnHTewVjn1fHI2BEkxFh4h1jqjOLlM+e4Rz8ct/uV0qXI9cic7PVBSkAVB+Xu5ky39yhV58Ax19YolI+16ls0vhf9DK2qRZMkazbThhYoJ0iOyJmS/Tlz3qsiXwFIMKHyH0Fo5ol/FxIUBts7cClI+FKUeIqwiI5iix8Av6uXi7ETHwWN2js6y927q5MV+KFH1oXayPBQZurOhay7sf2h+f844vu8F3wE2ZteZFjAjLdQMS6VMraGMnOysOQxI+Y4ijwNCfOyyYzA2z2U9FN8A3DG3/viJJ1GL5AR+sX8WZz6FdBq2OhDfNI9P/7QNiw18bXa1aydA0cgqw0fKmVD8PcwLiyOTSEn97YFqaaRds9gOE7BfHo+gwBahzloKHfjobImq0Sh7UZRSmQNFfl+HGTi0XveTjNzBmbVuiJ1xZiIwzhmih4FeMiBaJ5EWgT8V0cHJdD6yz6PscnKFE6mScdRGpltB99z5/YqSqrxDbTJKh4VzeFp/Bn4XDypNKJKHr45cYS/j1vlpC0whijBT3rrx+BptTy3dcW0DNtUibDkNhLdnnPJHI+EVUh5APhvX+4Ef2TorS8HMRb9rSA0W24rZHcArxT84HyK4DoV8/Ulx2Vls6JlixJ9mBb+jyOFM0k6Ipg4hg2ERLbkm3/7d+X/+3omlVt9R6PRNe/MN3TmqPLcuiVkkuywO5CdxaohXWYeaIpZXzrgucELpcxFmtlo+kLCrOTdlnDuFkknzRZJBm0nma51iIcVZ2jyO4RV79FHR3OIXykHtjfTxBgL9nmgnRJjBmOZQCaW8C8+NoAAA';" 
+                                            alt="Abdul Hadi" 
+                                            class="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
+                                        >
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Abdul Hadi. All Rights Reserved.</p>
-            <p>Designed with <i class="fas fa-heart"></i> by Abdul Hadi</p>
+        <!-- ==========================================
+             INFINITE SMOOTH ANIMATED COMPETENCY MARQUEE
+        =========================================== -->
+        <div class="bg-slate-50/90 border-y border-slate-200/80 py-3.5 overflow-hidden select-none">
+            <div class="marquee-track flex items-center gap-8 text-xs sm:text-sm font-semibold text-slate-600">
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-royal-600"></i> ChatGPT • Claude • Google Gemini</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-terminal text-indigo-600"></i> Prompt Engineering & AI Automation</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-chart-pie text-royal-600"></i> Retail Field Audit & Data Analysis</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-file-excel text-emerald-600"></i> Advanced MS Excel Reporting</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-brain text-indigo-600"></i> Machine Learning & Bangla NLP</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-code text-royal-600"></i> C • C++ • Java • HTML • CSS • JavaScript</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench text-royal-600"></i> IT Support & Hardware Maintenance</span>
+                <span class="text-slate-300">•</span>
+                <!-- Duplicate for seamless loop -->
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-royal-600"></i> ChatGPT • Claude • Google Gemini</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-terminal text-indigo-600"></i> Prompt Engineering & AI Automation</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-chart-pie text-royal-600"></i> Retail Field Audit & Data Analysis</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-file-excel text-emerald-600"></i> Advanced MS Excel Reporting</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-brain text-indigo-600"></i> Machine Learning & Bangla NLP</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-code text-royal-600"></i> C • C++ • Java • HTML • CSS • JavaScript</span>
+                <span class="text-slate-300">•</span>
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench text-royal-600"></i> IT Support & Hardware Maintenance</span>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             2. PROFESSIONAL SUMMARY & ANIMATED METRICS (#about)
+        =========================================== -->
+        <section id="about" class="bg-[#F8FAFC]/80 py-16 sm:py-20 border-b border-slate-200/70">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                
+                <!-- 4-Metric Animated Counter Strip -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 reveal-up">
+                    <div data-tilt class="tilt-card rounded-2xl p-6 text-center sm:text-left">
+                        <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-lg mb-3 mx-auto sm:mx-0 shadow-sm">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <p class="font-display font-extrabold text-2xl sm:text-3xl text-navy-900">
+                            <span class="counter" data-target="3.44" data-decimals="2">0.00</span>
+                            <span class="text-sm font-medium text-slate-400">/ 4.00</span>
+                        </p>
+                        <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">B.Sc. in CSE CGPA</p>
+                    </div>
+
+                    <div data-tilt class="tilt-card rounded-2xl p-6 text-center sm:text-left">
+                        <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-lg mb-3 mx-auto sm:mx-0 shadow-sm">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <p class="font-display font-extrabold text-2xl sm:text-3xl text-navy-900">
+                            <span class="counter" data-target="6" data-decimals="0">0</span> Models
+                        </p>
+                        <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">ML Classifiers Evaluated</p>
+                    </div>
+
+                    <div data-tilt class="tilt-card rounded-2xl p-6 text-center sm:text-left">
+                        <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-lg mb-3 mx-auto sm:mx-0 shadow-sm">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <p class="font-display font-extrabold text-2xl sm:text-3xl text-navy-900">
+                            <span class="counter" data-target="3" data-decimals="0">0</span> Courses
+                        </p>
+                        <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">6-Month IQAC Certifications</p>
+                    </div>
+
+                    <div data-tilt class="tilt-card rounded-2xl p-6 text-center sm:text-left">
+                        <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-lg mb-3 mx-auto sm:mx-0 shadow-sm">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <p class="font-display font-extrabold text-2xl sm:text-3xl text-navy-900">PRAN-RFL</p>
+                        <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Retail Audit Team Associate</p>
+                    </div>
+                </div>
+
+                <!-- Detailed Professional Summary Card -->
+                <div data-tilt class="tilt-card rounded-2xl p-7 sm:p-10 reveal-up">
+                    <div class="max-w-4xl space-y-4">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-royal-600">
+                            <i class="fa-solid fa-user-check"></i> Executive Profile
+                        </span>
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl text-navy-900">
+                            Professional Summary
+                        </h2>
+                        <p class="text-slate-600 text-base sm:text-lg leading-relaxed text-justify sm:text-left">
+                            Computer Science & Engineering (CSE) graduate (<strong class="text-navy-900 font-semibold">CGPA: 3.44/4.00</strong>) with practical experience in retail field auditing, data analysis, machine learning research, web application development, and IT support. Proficient in leveraging advanced AI tools (<strong class="text-royal-600 font-semibold">ChatGPT, Claude, Gemini</strong>) for workflow optimization, alongside technical skills in <strong class="text-navy-900 font-semibold">C, C++, Java, HTML, CSS, JavaScript</strong>, and Microsoft Office tools (<strong class="text-navy-900 font-semibold">MS Word, MS Excel, MS PowerPoint</strong>). Experienced in conducting machine learning model evaluation for Bangla fake news detection and preparing accurate audit reports using MS Excel. Strong analytical, problem-solving, and communication abilities, seeking to contribute effectively to a progressive organization.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             3. TECHNICAL SKILLS SECTION (#skills)
+        =========================================== -->
+        <section id="skills" class="bg-white py-16 sm:py-20 border-b border-slate-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="mb-12 reveal-up">
+                    <span class="text-xs font-bold uppercase tracking-widest text-royal-600">Core Competencies</span>
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy-900 mt-1">
+                        Technical Skills
+                    </h2>
+                </div>
+
+                <!-- Clean 3-Column Grid Ordered Exactly as in CV with Animated Mastery Bars -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- 1. Featured First Card: AI Tools & Prompt Engineering -->
+                    <div data-tilt class="tilt-card rounded-2xl p-7 border-t-4 border-t-royal-600 flex flex-col justify-between reveal-up">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-full bg-royal-50 text-royal-700 text-xs font-bold">01 • Top Skill</span>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-navy-900 mb-2">
+                                AI Tools & Prompt Engineering
+                            </h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Proficient in utilizing advanced AI platforms including ChatGPT, Claude, and Google Gemini for prompt engineering, code generation, data analysis, research, and workflow automation.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1.5">
+                                    <span>Generative AI & Prompting</span>
+                                    <span class="text-royal-600">95%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                                    <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-royal-600 to-indigo-600" data-width="95%"></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">ChatGPT</span>
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Claude</span>
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Google Gemini</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">Prompt Engineering</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">Workflow Automation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Programming & Development -->
+                    <div data-tilt class="tilt-card rounded-2xl p-7 flex flex-col justify-between reveal-up">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400">02</span>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-navy-900 mb-2">
+                                Programming & Development
+                            </h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Solid foundation in structured and object-oriented programming, algorithms, and responsive front-end web application development.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1.5">
+                                    <span>Core Programming & Web</span>
+                                    <span class="text-royal-600">88%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                                    <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-royal-600 to-indigo-600" data-width="88%"></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">C</span>
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">C++</span>
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Java</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">HTML5</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">CSS3</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. IT Support & Hardware Maintenance -->
+                    <div data-tilt class="tilt-card rounded-2xl p-7 flex flex-col justify-between reveal-up">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400">03</span>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-navy-900 mb-2">
+                                IT Support & Hardware Maintenance
+                            </h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Practical experience in system diagnostics, hardware/software troubleshooting, peripheral setup, and routine computer maintenance.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1.5">
+                                    <span>System Diagnostics & IT Support</span>
+                                    <span class="text-royal-600">92%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                                    <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-royal-600 to-indigo-600" data-width="92%"></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">IT Support</span>
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Computer Peripherals</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">Hardware Maintenance</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">HW/SW Troubleshooting</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Tools & Office Productivity -->
+                    <div data-tilt class="tilt-card rounded-2xl p-7 flex flex-col justify-between reveal-up">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-file-excel"></i>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400">04</span>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-navy-900 mb-2">
+                                Tools & Office Productivity
+                            </h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Proficient in field data analysis, audit reporting, spreadsheet management, and professional business documentation.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1.5">
+                                    <span>MS Office & Excel Analytics</span>
+                                    <span class="text-royal-600">94%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                                    <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-royal-600 to-indigo-600" data-width="94%"></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">MS Excel</span>
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">MS Word</span>
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">MS PowerPoint</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">Spreadsheet Management</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Language & Communication -->
+                    <div data-tilt class="tilt-card rounded-2xl p-7 flex flex-col justify-between reveal-up">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-language"></i>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400">05</span>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-navy-900 mb-2">
+                                Language & Communication
+                            </h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Strong bilingual proficiency for clear technical documentation, client communication, and cross-team coordination.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1.5">
+                                    <span>Bilingual Professional Communication</span>
+                                    <span class="text-royal-600">92%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                                    <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-royal-600 to-indigo-600" data-width="92%"></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">English (Reading, Writing, Listening, Speaking)</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">Bengali (Native)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Professional Strengths -->
+                    <div data-tilt class="tilt-card rounded-2xl p-7 flex flex-col justify-between reveal-up">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-people-group"></i>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400">06</span>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-navy-900 mb-2">
+                                Professional Skills & Strengths
+                            </h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                Dedicated to analytical accuracy, adaptability in fast-paced environments, and continuous technical growth.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1.5">
+                                    <span>Problem Solving & Teamwork</span>
+                                    <span class="text-royal-600">96%</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                                    <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-royal-600 to-indigo-600" data-width="96%"></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Analytical Problem Solving</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">Team Collaboration</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">Adaptability</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             4. PROFESSIONAL EXPERIENCE SECTION (#experience)
+        =========================================== -->
+        <section id="experience" class="bg-[#F8FAFC]/80 py-16 sm:py-20 border-b border-slate-200/70">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="mb-10 reveal-up">
+                    <span class="text-xs font-bold uppercase tracking-widest text-royal-600">Career Track</span>
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy-900 mt-1">
+                        Professional Experience
+                    </h2>
+                </div>
+
+                <div data-tilt class="tilt-card rounded-2xl p-7 sm:p-9 border-l-4 border-l-royal-600 reveal-up">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-200">
+                        <div>
+                            <h3 class="font-display font-bold text-xl sm:text-2xl text-navy-900">
+                                Part-Time Audit Associate – Retail Audit Team
+                            </h3>
+                            <p class="text-royal-600 font-semibold text-base mt-1 flex items-center gap-2">
+                                <i class="fa-solid fa-building text-sm"></i>
+                                <span>PRAN-RFL Group</span>
+                            </p>
+                        </div>
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-royal-50 border border-royal-100 text-royal-700 text-xs sm:text-sm font-semibold self-start sm:self-center">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Sep 2026 – Present</span>
+                        </div>
+                    </div>
+
+                    <ul class="mt-6 space-y-3.5 text-slate-600 text-sm sm:text-base">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-royal-600 mt-1.5 text-sm shrink-0"></i>
+                            <span>Collect, verify, and analyze field audit data using <strong class="text-navy-900 font-semibold">MS Excel</strong> to prepare accurate audit reports and identify operational discrepancies.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-royal-600 mt-1.5 text-sm shrink-0"></i>
+                            <span>Conduct retail outlet audits, physical inventory verification, and stock reconciliation in accordance with organizational standards.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             5. RESEARCH & PROJECTS SECTION (#projects)
+        =========================================== -->
+        <section id="projects" class="bg-white py-16 sm:py-20 border-b border-slate-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="mb-12 reveal-up">
+                    <span class="text-xs font-bold uppercase tracking-widest text-royal-600">Academic & Technical Portfolio</span>
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy-900 mt-1">
+                        Research & Projects
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    
+                    <!-- Card 1: Undergraduate Thesis Research (7 Cols) -->
+                    <div data-tilt class="lg:col-span-7 tilt-card rounded-2xl p-7 sm:p-9 flex flex-col justify-between reveal-up">
+                        <div>
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                                <span class="px-3 py-1 rounded-full bg-royal-50 text-royal-700 text-xs font-semibold">
+                                    Undergraduate Thesis Research (ML & NLP)
+                                </span>
+                                <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">6 ML Classifiers Evaluated</span>
+                            </div>
+
+                            <h3 class="font-display font-bold text-xl sm:text-2xl text-navy-900 leading-snug mb-4">
+                                “Fake News Detect: Bangla Fake News Detection Model based on Different Machine Learning Classifiers”
+                            </h3>
+
+                            <ul class="space-y-3 text-slate-600 text-sm sm:text-base mb-6">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-check text-royal-600 mt-1 text-sm shrink-0"></i>
+                                    <span>Developed a Bangla fake news detection framework using <strong class="text-navy-900 font-semibold">Natural Language Processing (NLP)</strong> text preprocessing and feature extraction techniques.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-check text-royal-600 mt-1 text-sm shrink-0"></i>
+                                    <span>Trained and tested multiple machine learning classifiers, including <strong class="text-navy-900 font-semibold">Logistic Regression, Random Forest, Passive Aggressive Classifier, Support Vector Machine (SVM), Decision Tree Classifier, and Multinomial Naive Bayes</strong>.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-check text-royal-600 mt-1 text-sm shrink-0"></i>
+                                    <span>Evaluated and compared model accuracy and classification metrics to identify the best-performing algorithm for detecting Bangla fake news.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pt-5 border-t border-slate-100">
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Evaluated Machine Learning Classifiers:</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Logistic Regression</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Random Forest</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Passive Aggressive Classifier</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Support Vector Machine (SVM)</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Decision Tree Classifier</span>
+                                <span class="px-3 py-1.5 rounded-lg bg-royal-50 text-royal-700 text-xs font-semibold">Multinomial Naive Bayes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Smart Size Finder Web Application (5 Cols) -->
+                    <div data-tilt class="lg:col-span-5 tilt-card rounded-2xl p-7 sm:p-9 flex flex-col justify-between reveal-up">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4">
+                                <span class="px-3 py-1 rounded-full bg-royal-50 text-royal-700 text-xs font-semibold">
+                                    Web Application Project
+                                </span>
+                                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Live on GitHub
+                                </span>
+                            </div>
+
+                            <h3 class="font-display font-bold text-xl sm:text-2xl text-navy-900 mb-3">
+                                Smart Size Finder
+                            </h3>
+
+                            <div class="rounded-xl bg-slate-50 border border-slate-200 p-4 mb-5">
+                                <p class="text-xs font-medium text-royal-600 truncate mb-1">hadijjjjj.github.io/smart-size-finder/</p>
+                                <p class="text-sm font-semibold text-navy-900">Interactive Clothing Size Recommendation Tool</p>
+                            </div>
+
+                            <ul class="space-y-3 text-slate-600 text-sm sm:text-base mb-6">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-check text-royal-600 mt-1 text-sm shrink-0"></i>
+                                    <span>Developed an interactive web application that calculates and recommends accurate clothing sizes based on user physical body measurements.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-check text-royal-600 mt-1 text-sm shrink-0"></i>
+                                    <span>Built a responsive front-end interface and deployed the live application on GitHub Pages.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pt-5 border-t border-slate-100 flex items-center justify-between gap-3">
+                            <span class="text-xs font-semibold text-slate-500">HTML5 • CSS3 • JavaScript</span>
+                            <a href="https://hadijjjjj.github.io/smart-size-finder/" target="_blank" rel="noopener noreferrer" class="btn-shine inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-royal-600 to-indigo-600 hover:from-royal-700 hover:to-indigo-700 transition shadow-sm">
+                                <span>Live Demo</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             6. EDUCATION, TRAINING & REFERENCE (#education)
+        =========================================== -->
+        <section id="education" class="bg-[#F8FAFC]/80 py-16 sm:py-20 border-b border-slate-200/70">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    
+                    <!-- Left Column: Academic Education -->
+                    <div class="reveal-up">
+                        <span class="text-xs font-bold uppercase tracking-widest text-royal-600">Academic Background</span>
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl text-navy-900 mt-1 mb-7">
+                            Education
+                        </h2>
+
+                        <div class="space-y-5">
+                            <!-- B.Sc. -->
+                            <div data-tilt class="tilt-card rounded-2xl p-6">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                    <span class="text-xs font-semibold text-royal-600">2022 – 2025</span>
+                                    <span class="px-3 py-0.5 rounded-full bg-royal-50 text-royal-700 text-xs font-bold">CGPA: 3.44 / 4.00</span>
+                                </div>
+                                <h3 class="font-display font-bold text-lg text-navy-900">
+                                    Bachelor of Science in Computer Science and Engineering
+                                </h3>
+                                <p class="text-sm text-slate-600 mt-1">
+                                    University of Global Village (UGV), Barishal
+                                </p>
+                            </div>
+
+                            <!-- HSC -->
+                            <div data-tilt class="tilt-card rounded-2xl p-6">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                    <span class="text-xs font-semibold text-royal-600">2020</span>
+                                    <span class="px-3 py-0.5 rounded-full bg-royal-50 text-royal-700 text-xs font-bold">GPA: 4.50 / 5.00</span>
+                                </div>
+                                <h3 class="font-display font-bold text-lg text-navy-900">
+                                    Higher Secondary Certificate (HSC) — Science
+                                </h3>
+                                <p class="text-sm text-slate-600 mt-1">
+                                    Govt. BM College, Barishal
+                                </p>
+                            </div>
+
+                            <!-- SSC -->
+                            <div data-tilt class="tilt-card rounded-2xl p-6">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                    <span class="text-xs font-semibold text-royal-600">2018</span>
+                                    <span class="px-3 py-0.5 rounded-full bg-royal-50 text-royal-700 text-xs font-bold">GPA: 4.39 / 5.00</span>
+                                </div>
+                                <h3 class="font-display font-bold text-lg text-navy-900">
+                                    Secondary School Certificate (SSC) — Science
+                                </h3>
+                                <p class="text-sm text-slate-600 mt-1">
+                                    Lechushah Unpaid Alia Madrasah, Barishal
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Training & Certification -->
+                    <div class="reveal-up">
+                        <span class="text-xs font-bold uppercase tracking-widest text-royal-600">Professional Development</span>
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl text-navy-900 mt-1 mb-7">
+                            Training & Certifications
+                        </h2>
+
+                        <div class="space-y-5">
+                            <!-- Training 1 -->
+                            <div data-tilt class="tilt-card rounded-2xl p-6">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                    <span class="text-xs font-semibold text-royal-600">2023 • Duration: 6 Months</span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">IQAC Certified</span>
+                                </div>
+                                <h3 class="font-display font-bold text-lg text-navy-900">
+                                    IT Supports
+                                </h3>
+                                <p class="text-sm font-medium text-royal-600 mt-0.5">
+                                    Topic: Computer Peripherals & Hardware
+                                </p>
+                                <p class="text-xs text-slate-500 mt-1">
+                                    University of Global Village (IQAC), Barishal
+                                </p>
+                            </div>
+
+                            <!-- Training 2 -->
+                            <div data-tilt class="tilt-card rounded-2xl p-6">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                    <span class="text-xs font-semibold text-royal-600">2022 • Duration: 6 Months</span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">IQAC Certified</span>
+                                </div>
+                                <h3 class="font-display font-bold text-lg text-navy-900">
+                                    Intensive English Language Course-I
+                                </h3>
+                                <p class="text-sm font-medium text-royal-600 mt-0.5">
+                                    Topic: Listening, Speaking, Writing
+                                </p>
+                                <p class="text-xs text-slate-500 mt-1">
+                                    University of Global Village (IQAC), Barishal
+                                </p>
+                            </div>
+
+                            <!-- Training 3 -->
+                            <div data-tilt class="tilt-card rounded-2xl p-6">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                    <span class="text-xs font-semibold text-royal-600">2022 • Duration: 6 Months</span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">IQAC Certified</span>
+                                </div>
+                                <h3 class="font-display font-bold text-lg text-navy-900">
+                                    Computer Operation
+                                </h3>
+                                <p class="text-sm font-medium text-royal-600 mt-0.5">
+                                    Topic: MS Office, Excel, PowerPoint
+                                </p>
+                                <p class="text-xs text-slate-500 mt-1">
+                                    University of Global Village (IQAC), Barishal
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Academic Reference Card -->
+                <div data-tilt class="tilt-card rounded-2xl p-7 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 reveal-up">
+                    <div class="flex items-start sm:items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-royal-600">Academic Reference</span>
+                            <h3 class="font-display font-bold text-xl text-navy-900 mt-0.5">
+                                Md. Tariqul Islam
+                            </h3>
+                            <p class="text-sm text-slate-600 font-medium">
+                                Assistant Professor, Department of Computer Science & Engineering, University of Global Village
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3">
+                        <a href="tel:+8801842733104" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 hover:border-royal-600 text-xs sm:text-sm font-semibold text-slate-700 hover:text-royal-600 transition">
+                            <i class="fa-solid fa-phone text-royal-600"></i>
+                            <span>+880 1842-733104</span>
+                        </a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tariq.ugv@gmail.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-royal-50 hover:bg-royal-600 text-royal-700 hover:text-white text-xs sm:text-sm font-semibold transition">
+                            <i class="fa-regular fa-envelope"></i>
+                            <span>tariq.ugv@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             7. DIRECT GMAIL CONTACT SECTION (#contact)
+             (NO PUBLIC CSV LOG / DIRECT GMAIL DELIVERY)
+        =========================================== -->
+        <section id="contact" class="bg-white py-16 sm:py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                    
+                    <!-- Left Column: Direct Contact Channels (5 Cols) -->
+                    <div class="lg:col-span-5 space-y-6 reveal-up">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-royal-600">Get In Touch</span>
+                            <h2 class="font-display font-bold text-3xl sm:text-4xl text-navy-900 mt-1">
+                                Contact Abdul Hadi
+                            </h2>
+                            <p class="text-slate-600 text-sm sm:text-base mt-2 leading-relaxed">
+                                Feel free to reach out for entry-level roles, data analysis, IT support opportunities, or academic collaborations. Any message submitted through the form is delivered directly to my personal Gmail inbox.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hadimdabdul2@gmail.com" target="_blank" rel="noopener noreferrer" data-tilt class="tilt-card rounded-2xl p-4.5 p-4 flex items-center gap-4 block">
+                                <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center shrink-0">
+                                    <i class="fa-regular fa-envelope text-lg"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="text-xs text-slate-400 font-medium">Direct Email</p>
+                                    <p class="text-sm font-bold text-navy-900 truncate">hadimdabdul2@gmail.com</p>
+                                </div>
+                            </a>
+
+                            <a href="tel:+8801722740604" data-tilt class="tilt-card rounded-2xl p-4 flex items-center gap-4 block">
+                                <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-phone text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-medium">Phone / WhatsApp</p>
+                                    <p class="text-sm font-bold text-navy-900">+8801722740604</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/abdul-hadi-70a6603a5" target="_blank" rel="noopener noreferrer" data-tilt class="tilt-card rounded-2xl p-4 flex items-center gap-4 block">
+                                <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center shrink-0">
+                                    <i class="fa-brands fa-linkedin-in text-lg"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="text-xs text-slate-400 font-medium">LinkedIn Profile</p>
+                                    <p class="text-sm font-bold text-navy-900 truncate">linkedin.com/in/abdul-hadi-70a6603a5</p>
+                                </div>
+                            </a>
+
+                            <div data-tilt class="tilt-card rounded-2xl p-4 flex items-center gap-4">
+                                <div class="w-11 h-11 rounded-xl bg-royal-50 text-royal-600 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-location-dot text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-medium">Location</p>
+                                    <p class="text-sm font-bold text-navy-900">Dokkhin Korapur, Barishal, Bangladesh</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Clean Executive Contact Form Connected Directly to Gmail (7 Cols) -->
+                    <div data-tilt class="lg:col-span-7 tilt-card rounded-2xl p-7 sm:p-9 reveal-up">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-display font-bold text-xl sm:text-2xl text-navy-900">
+                                Send a Direct Message
+                            </h3>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Direct Gmail Delivery
+                            </span>
+                        </div>
+
+                        <form id="contactForm" action="https://formsubmit.co/hadimdabdul2@gmail.com" method="POST" class="space-y-5">
+                            <!-- FormSubmit Configuration Hidden Inputs -->
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="senderName" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Full Name *</label>
+                                    <input type="text" id="senderName" name="name" required placeholder="Your Name" class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-navy-900 text-sm focus:bg-white focus:outline-none focus:border-royal-600 focus:ring-4 focus:ring-royal-50 transition">
+                                </div>
+                                <div>
+                                    <label for="senderEmail" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Email Address *</label>
+                                    <input type="email" id="senderEmail" name="email" required placeholder="you@company.com" class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-navy-900 text-sm focus:bg-white focus:outline-none focus:border-royal-600 focus:ring-4 focus:ring-royal-50 transition">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="senderSubject" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Subject *</label>
+                                <input type="text" id="senderSubject" name="_subject" required placeholder="Job Opportunity / Project Discussion" class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-navy-900 text-sm focus:bg-white focus:outline-none focus:border-royal-600 focus:ring-4 focus:ring-royal-50 transition">
+                            </div>
+
+                            <div>
+                                <label for="senderMessage" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Message *</label>
+                                <textarea id="senderMessage" name="message" rows="4" required placeholder="Write your message here..." class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-navy-900 text-sm focus:bg-white focus:outline-none focus:border-royal-600 focus:ring-4 focus:ring-royal-50 transition resize-none"></textarea>
+                            </div>
+
+                            <!-- Status Feedback Box -->
+                            <div id="formStatusBox" class="hidden rounded-xl p-4 text-sm font-medium"></div>
+
+                            <button id="submitMsgBtn" type="submit" class="btn-shine w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-sm sm:text-base text-white bg-gradient-to-r from-royal-600 to-indigo-600 hover:from-royal-700 hover:to-indigo-700 shadow-lg shadow-royal-600/20 transition transform hover:-translate-y-0.5">
+                                <i id="submitBtnIcon" class="fa-regular fa-paper-plane"></i>
+                                <span id="submitBtnText">Send Message to Gmail</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================
+         CLEAN EXECUTIVE FOOTER
+    =========================================== -->
+    <footer class="relative z-10 bg-[#F8FAFC] border-t border-slate-200 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-500">
+            <p>© <span id="footerYear">2026</span> <strong class="text-navy-900 font-semibold">Abdul Hadi</strong>. All Rights Reserved.</p>
+            <div class="flex items-center gap-6 font-medium">
+                <a href="https://hadijjjjj.github.io/smart-size-finder/" target="_blank" rel="noopener noreferrer" class="hover:text-royal-600 transition">Smart Size Finder</a>
+                <a href="https://www.linkedin.com/in/abdul-hadi-70a6603a5" target="_blank" rel="noopener noreferrer" class="hover:text-royal-600 transition">LinkedIn</a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hadimdabdul2@gmail.com" target="_blank" rel="noopener noreferrer" class="hover:text-royal-600 transition">Email</a>
+            </div>
         </div>
     </footer>
 
+    <!-- ==========================================
+         JAVASCRIPT: RICH ANIMATIONS & DIRECT GMAIL
+    =========================================== -->
     <script>
-        // Mobile Menu Toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
+        // 1. Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuIcon = document.getElementById('mobileMenuIcon');
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenuIcon.className = isOpen ? 'fa-solid fa-xmark text-base' : 'fa-solid fa-bars text-base';
         });
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
+        document.querySelectorAll('.mobile-link').forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.className = 'fa-solid fa-bars text-base';
             });
         });
 
-        // Active link on scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
+        // 2. Top Scroll Progress Bar & Active Navigation Highlight
+        const scrollProgress = document.getElementById('scrollProgress');
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('section[id]');
 
         window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollProgress.style.width = `${progress}%`;
+
+            let currentSection = '';
+            sections.forEach(sec => {
+                const top = sec.offsetTop - 130;
+                if (scrollTop >= top) {
+                    currentSection = sec.getAttribute('id');
                 }
             });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${currentSection}`) {
+                    item.classList.add('active');
                 }
             });
         });
 
-        // Navbar shadow on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.1)';
+        // 3. Live Typewriter Role Animator in Hero
+        const roles = [
+            "Computer Science & Engineering Graduate",
+            "Data Analyst & IT Support Specialist",
+            "AI Tools & Prompt Engineering Proficient",
+            "Machine Learning & NLP Researcher"
+        ];
+        const typewriterEl = document.getElementById('typewriterText');
+        let roleIndex = 0;
+        let charIndex = roles[0].length;
+        let isDeleting = true;
+
+        function runTypewriter() {
+            const currentText = roles[roleIndex];
+            if (isDeleting) {
+                charIndex--;
+                typewriterEl.textContent = currentText.substring(0, charIndex);
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    setTimeout(runTypewriter, 350);
+                    return;
+                }
+                setTimeout(runTypewriter, 35);
             } else {
-                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+                charIndex++;
+                typewriterEl.textContent = currentText.substring(0, charIndex);
+                if (charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(runTypewriter, 2200);
+                    return;
+                }
+                setTimeout(runTypewriter, 65);
             }
-        });
+        }
+        setTimeout(runTypewriter, 2000);
 
+        // 4. Staggered Scroll-Reveal, Skill Progress Bars & Animated Counters
+        const revealElements = document.querySelectorAll('.reveal-up');
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+        const counters = document.querySelectorAll('.counter');
 
-
-
-
-
-
-
-
-        // Fade-in animation on scroll
-        const fadeElements = document.querySelectorAll('.skill-card, .training-card, .timeline-item, .stat-card');
-
-        const fadeObserver = new IntersectionObserver((entries) => {
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
+
+                    // Animate skill bars inside visible cards
+                    entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    });
+
+                    // Animate numeric counters inside visible cards
+                    entry.target.querySelectorAll('.counter').forEach(counter => {
+                        if (counter.dataset.animated) return;
+                        counter.dataset.animated = 'true';
+                        const target = parseFloat(counter.getAttribute('data-target'));
+                        const decimals = parseInt(counter.getAttribute('data-decimals') || '0', 10);
+                        const duration = 1500;
+                        const startTime = performance.now();
+
+                        function updateCounter(now) {
+                            const elapsed = now - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const easeOut = 1 - Math.pow(1 - progress, 3);
+                            counter.textContent = (target * easeOut).toFixed(decimals);
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = target.toFixed(decimals);
+                            }
+                        }
+                        requestAnimationFrame(updateCounter);
+                    });
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.14 });
 
-        fadeElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease-out';
-            fadeObserver.observe(el);
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 5. Interactive 3D Perspective Tilt & Radial Spotlight on All Cards
+        const tiltCards = document.querySelectorAll('[data-tilt]');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.015, 1.015, 1.015)`;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            });
         });
+
+        // 6. Custom Smooth Magnetic Cursor (Desktop)
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorRing = document.getElementById('cursorRing');
+        let mouseX = -100, mouseY = -100;
+        let ringX = -100, ringY = -100;
+
+        if (window.matchMedia('(pointer: fine)').matches) {
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.style.left = `${mouseX}px`;
+                cursorDot.style.top = `${mouseY}px`;
+            });
+
+            function animateCursorRing() {
+                ringX += (mouseX - ringX) * 0.18;
+                ringY += (mouseY - ringY) * 0.18;
+                cursorRing.style.left = `${ringX}px`;
+                cursorRing.style.top = `${ringY}px`;
+                requestAnimationFrame(animateCursorRing);
+            }
+            requestAnimationFrame(animateCursorRing);
+
+            document.querySelectorAll('a, button, input, textarea, [data-tilt]').forEach(el => {
+                el.addEventListener('mouseenter', () => cursorRing.classList.add('cursor-hover'));
+                el.addEventListener('mouseleave', () => cursorRing.classList.remove('cursor-hover'));
+            });
+        }
+
+        // 7. Interactive Neural / Constellation Particle Canvas Background
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let pointer = { x: null, y: null, radius: 130 };
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(Math.floor((canvas.width * canvas.height) / 22000), 55);
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.55,
+                    vy: (Math.random() - 0.5) * 0.55,
+                    size: Math.random() * 2 + 1.2
+                });
+            }
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            pointer.x = e.clientX;
+            pointer.y = e.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            pointer.x = null;
+            pointer.y = null;
+        });
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(37, 99, 235, 0.28)';
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dx = p.x - p2.x;
+                    let dy = p.y - p2.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 135) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(37, 99, 235, ${0.12 * (1 - dist / 135)})`;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+
+                if (pointer.x !== null && pointer.y !== null) {
+                    let dx = p.x - pointer.x;
+                    let dy = p.y - pointer.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < pointer.radius) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(79, 70, 229, ${0.24 * (1 - dist / pointer.radius)})`;
+                        ctx.lineWidth = 1.2;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(pointer.x, pointer.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.onload = function () {
+            resizeCanvas();
+            animateParticles();
+        };
+
+        // 8. Direct Gmail Delivery via FormSubmit AJAX (No Public CSV Log)
+        const contactForm = document.getElementById('contactForm');
+        const formStatusBox = document.getElementById('formStatusBox');
+        const submitBtnIcon = document.getElementById('submitBtnIcon');
+        const submitBtnText = document.getElementById('submitBtnText');
+
+        function showStatus(html, isSuccess) {
+            formStatusBox.className = isSuccess
+                ? 'rounded-xl p-4 text-sm font-medium bg-emerald-50 text-emerald-800 border border-emerald-200'
+                : 'rounded-xl p-4 text-sm font-medium bg-royal-50 text-royal-700 border border-royal-100';
+            formStatusBox.innerHTML = html;
+            formStatusBox.classList.remove('hidden');
+        }
+
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('senderName').value.trim();
+            const email = document.getElementById('senderEmail').value.trim();
+            const subject = document.getElementById('senderSubject').value.trim();
+            const message = document.getElementById('senderMessage').value.trim();
+
+            submitBtnIcon.className = 'fa-solid fa-circle-notch fa-spin';
+            submitBtnText.textContent = 'Sending to Gmail...';
+
+            try {
+                const res = await fetch('https://formsubmit.co/ajax/hadimdabdul2@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        _subject: `Portfolio Message: ${subject}`,
+                        message: message,
+                        _template: 'table',
+                        _captcha: 'false'
+                    })
+                });
+
+                if (res.ok) {
+                    showStatus(`<i class="fa-solid fa-circle-check mr-1.5"></i> Thank you, <strong>${name}</strong>! Your message has been sent directly to Abdul Hadi's Gmail inbox (<strong>hadimdabdul2@gmail.com</strong>).`, true);
+                    contactForm.reset();
+                } else {
+                    throw new Error('Fallback');
+                }
+            } catch (err) {
+                const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=hadimdabdul2@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+                showStatus(`<i class="fa-solid fa-paper-plane mr-1.5"></i> Redirecting to Gmail Compose... <a href="${gmailCompose}" target="_blank" class="underline font-bold">Click here if it doesn't open automatically</a>.`, false);
+                window.open(gmailCompose, '_blank');
+                contactForm.reset();
+            }
+
+            submitBtnIcon.className = 'fa-regular fa-paper-plane';
+            submitBtnText.textContent = 'Send Message to Gmail';
+        });
+
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
